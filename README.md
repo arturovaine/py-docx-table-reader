@@ -1,1 +1,3 @@
-# py-docx-table-reader
+# Leitor de tabelas em docx
+
+## Libs: docx, pandas, os

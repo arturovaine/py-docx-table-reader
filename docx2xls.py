@@ -64,19 +64,18 @@ print(len(df))
 # Listar arquivos
 
 def get_files_list(dir_name):
-    # create a list of file and sub directories 
-    # names in the given directory 
+    # Criar lista de arquivos e subdiretórios 
     files_list = os.listdir(dir_name)
     all_files = list()
-    # Iterate over all the entries
+    # Iterar sobre todas as entradas
     for entry in files_list:
-        # Create full path
-        fullPath = os.path.join(dir_name, entry)
-        # If entry is a directory then get the list of files in this directory 
-        if os.path.isdir(fullPath):
-            all_files = all_files + get_files_list(fullPath)
+        # Criar o caminho completo, a partir do nome do diretório
+        full_path = os.path.join(dir_name, entry)
+        # Se entrada é um diretório, resgatar a lista de arquivos neste diretório 
+        if os.path.isdir(full_path):
+            all_files = all_files + get_files_list(full_path)
         else:
-            all_files.append(fullPath)
+            all_files.append(full_path)
                 
     return all_files
 
@@ -90,3 +89,16 @@ print(len(files_list))
 
 #%%
 
+import os, pandas as pd
+
+df_docx_files = pd.DataFrame()
+
+path = ""
+
+for root, dirs, files in os.walk(path):
+    for file in files:
+        if file.endswith("v1.docx"):
+            df_docx_files.append(file)
+            print(os.path.join(root, file))
+
+print(df_docx_files)
